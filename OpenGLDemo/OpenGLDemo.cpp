@@ -2,7 +2,9 @@
 #include "SDL.h"
 
 #include "glad/glad.h"
+#include "stb_image.h"
 
+// Not working after the new colors
 
 int main(int argc, char** argv)
 {
@@ -30,28 +32,49 @@ int main(int argc, char** argv)
 	}
 
 	float vertices[] = {
-	 0.0f,  0.5f, 1.0f, 0.0f, 0.0f, // Vertex 1: Red
-	 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // Vertex 2: Green
-	-0.5f, -0.5f, 0.0f, 0.0f, 1.0f  // Vertex 3: Blue
+		// positions         // colors           // texture coords
+		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+	   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+	   -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left
+	};
+	unsigned int indices[] = {  // note that we start from 0!
+		0, 1, 3,   // first triangle
+		1, 2, 3    // second triangle
 	};
 
-	GLuint vbo;
-	glGenBuffers(1, &vbo); // Generate 1 buffer
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 
+	GLuint vbo;
+	glGenBuffers(1, &vbo); // Generate 1 vertex buffer object
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	GLuint ebo;
+	glGenBuffers(1, &ebo); // Generate 1 element buffer object
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// Vertex shader
 
 	const char* vertexShaderSource = R"glsl(
 		#version 330 core
-		in vec2 position;
+
+		in vec3 position;
 		in vec3 color;
+		in vec2 texCoord;
+
 		out vec3 Color;
+		out vec2 TexCoord;
+
 		void main()
 		{
 			Color = color;
-			gl_Position = vec4(position, 0.0, 1.0);
+			TexCoord = texCoord;
+			gl_Position = vec4(position, 1.0);
+
 		}
 	)glsl";
 
@@ -73,10 +96,15 @@ int main(int argc, char** argv)
 	const char* fragmentShaderSource = R"glsl(
 		#version 330 core
 		in vec3 Color;
+		in vec2 TexCoord;
+
 		out vec4 outColor;
+
+		uniform sampler2D ourTexture;
+
 		void main()
 		{
-			outColor = vec4(Color, 1.0);
+			outColor = texture(ourTexture, TexCoord) * vec4(Color, 1.0);
 		}
 	)glsl";
 	
@@ -107,55 +135,66 @@ int main(int argc, char** argv)
 
 	glDeleteShader(vertexShader); // Delete the vertex shader
 	glDeleteShader(fragmentShader); // Delete the fragment shader
-	glUseProgram(shaderProgram);
+
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	// set the texture wrapping/filtering options (on the currently bound texture object)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// load and generate the texture
+	int width, height, nrChannels;
+	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
+
 
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
+	glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), 0);
 
 	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 
-	glEnableVertexAttribArray(0);
+	GLint texCoordAttrib = glGetAttribLocation(shaderProgram, "texCoord");
+	glEnableVertexAttribArray(texCoordAttrib);
+	glVertexAttribPointer(texCoordAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	// 1. Bind the VAO
-	glBindVertexArray(vao);
-
-	// 2. Copy the vertex data into a VBO
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	// 3. Set up the vertex attribute pointers
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	// Bind the VAO before drawing
-	glBindVertexArray(vao);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glBindVertexArray(0);
 
-	
+	glUseProgram(shaderProgram);	
 	GLint uniColor = glGetUniformLocation(shaderProgram, "triangleColor");
 	glUniform3f(uniColor, 1.0f, 0.0f, 0.0f);  // Red color
 
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	SDL_Event windowEvent;
-	while (true)
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	while (true) // Render Loop
 	{
-		if (SDL_PollEvent(&windowEvent))
+		if (SDL_PollEvent(&windowEvent)) // Event Loop
 		{
 			if (windowEvent.type == SDL_QUIT) break;
 		}
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		glBindVertexArray(vao);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glBindVertexArray(0);
 
 		SDL_GL_SwapWindow(window);
 	}

@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{903246CD-4726-41D0-8438-B2AE2A6C48BC}|OpenGLDemo\\OpenGLDemo.vcxproj|C:\\Users\\dark_\\Documents\\GitHub\\OpenGLDemo\\OpenGLDemo\\OpenGLDemo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{903246CD-4726-41D0-8438-B2AE2A6C48BC}|OpenGLDemo\\OpenGLDemo.vcxproj|solutionrelative:OpenGLDemo\\OpenGLDemo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{903246CD-4726-41D0-8438-B2AE2A6C48BC}|OpenGLDemo\\OpenGLDemo.vcxproj|C:\\Users\\dark_\\Documents\\GitHub\\OpenGLDemo\\OpenGLDemo\\stb_image.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{903246CD-4726-41D0-8438-B2AE2A6C48BC}|OpenGLDemo\\OpenGLDemo.vcxproj|solutionrelative:OpenGLDemo\\stb_image.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "stb_image.cpp",
+              "DocumentMoniker": "C:\\Users\\dark_\\Documents\\GitHub\\OpenGLDemo\\OpenGLDemo\\stb_image.cpp",
+              "RelativeDocumentMoniker": "OpenGLDemo\\stb_image.cpp",
+              "ToolTip": "C:\\Users\\dark_\\Documents\\GitHub\\OpenGLDemo\\OpenGLDemo\\stb_image.cpp",
+              "RelativeToolTip": "OpenGLDemo\\stb_image.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-03T15:38:02.487Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "OpenGLDemo\\OpenGLDemo.cpp",
               "ToolTip": "C:\\Users\\dark_\\Documents\\GitHub\\OpenGLDemo\\OpenGLDemo\\OpenGLDemo.cpp",
               "RelativeToolTip": "OpenGLDemo\\OpenGLDemo.cpp",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAAAHQAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAvwGIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-19T14:30:34.612Z",
               "EditorCaption": ""
