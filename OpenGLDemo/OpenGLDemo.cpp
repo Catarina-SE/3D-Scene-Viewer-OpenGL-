@@ -1,8 +1,12 @@
 #include <iostream>
-#include "SDL.h"
+#include <SDL.h>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 #include "stb_image.h"
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 // Not working after the new colors
 
@@ -69,14 +73,17 @@ int main(int argc, char** argv)
 		out vec3 Color;
 		out vec2 TexCoord;
 
+		uniform mat4 transform;		
+
 		void main()
 		{
+			gl_Position = transform * vec4(position, 1.0);
 			Color = color;
 			TexCoord = texCoord;
-			gl_Position = vec4(position, 1.0);
 
 		}
 	)glsl";
+
 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER); // Create a vertex shader
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL); // Attach the shader source code
@@ -101,10 +108,13 @@ int main(int argc, char** argv)
 		out vec4 outColor;
 
 		uniform sampler2D ourTexture;
+		uniform sampler2D ourTexture2;
 
 		void main()
 		{
-			outColor = texture(ourTexture, TexCoord) * vec4(Color, 1.0);
+			vec4 colTex1 = texture(ourTexture, TexCoord);
+			vec4 colTex2 = texture(ourTexture2, TexCoord) * vec4(Color, 1.0);
+			outColor = mix(colTex1, colTex2, 0.5);
 		}
 	)glsl";
 	
@@ -160,6 +170,28 @@ int main(int argc, char** argv)
 	}
 	stbi_image_free(data);
 
+	GLuint texture2;
+	glGenTextures(1, &texture2);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+
+	// set the texture wrapping/filtering options (on the currently bound texture object)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// load and generate the texture
+	data = stbi_load("awesomeface.png", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);	
 
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
@@ -183,6 +215,19 @@ int main(int argc, char** argv)
 
 	SDL_Event windowEvent;
 
+	GLuint textureLocation;
+	GLuint textureLocation2;
+
+	textureLocation = glGetUniformLocation(shaderProgram, "ourTexture");
+	textureLocation2 = glGetUniformLocation(shaderProgram, "ourTexture2");
+
+	stbi_set_flip_vertically_on_load(true);
+
+	glUniform1i(textureLocation, 0); // set it manually
+	glUniform1i(textureLocation, 1); // or with shader class
+
+	int start = SDL_GetTicks();
+
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	while (true) // Render Loop
 	{
@@ -190,6 +235,21 @@ int main(int argc, char** argv)
 		{
 			if (windowEvent.type == SDL_QUIT) break;
 		}
+
+		int now = SDL_GetTicks();
+		float time = (now - start) / 1000.0f;
+
+		glm::mat4 trans(1.0f);
+		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+		trans = glm::rotate(trans, time, glm::vec3(0.0f, 0.0f, 1.0f));
+
+		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		glBindVertexArray(vao);
