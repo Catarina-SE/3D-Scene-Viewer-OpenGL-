@@ -1,4 +1,0 @@
-﻿  OpenGLDemo.cpp
-C:\Users\dark_\Documents\GitHub\OpenGLDemo\OpenGLDemo\OpenGLDemo.cpp(24,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dark_\Documents\GitHub\OpenGLDemo\OpenGLDemo\OpenGLDemo.cpp(24,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  OpenGLDemo.vcxproj -> C:\Users\dark_\Documents\GitHub\OpenGLDemo\x64\Debug\OpenGLDemo.exe
