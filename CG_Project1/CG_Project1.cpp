@@ -102,56 +102,9 @@ int main(int argc, char** argv)
 
 	stbi_set_flip_vertically_on_load(true);
 
-// 	GLuint texture;
-// 	glGenTextures(1, &texture);
-// 	glBindTexture(GL_TEXTURE_2D, texture);
-// 
-// 	// set the texture wrapping/filtering options (on the currently bound texture object)
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	Texture texture0("resources/container.jpg", GL_TEXTURE_2D, 0);
 
-	// load and generate the texture
-	int width, height, nrChannels;
-// 	unsigned char* data = stbi_load("resources/container.jpg", &width, &height, &nrChannels, 0);
-// 	if (data)
-// 	{
-// 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-// 		glGenerateMipmap(GL_TEXTURE_2D);
-// 	}
-// 	else
-// 	{
-// 		std::cout << "Failed to load texture" << std::endl;
-// 	}
-// 	stbi_image_free(data);
-
-	Texture texture0("resources/container.jpg", GL_TEXTURE_2D, 0, GL_RGB);
-
-// 	GLuint texture2;
-// 	glGenTextures(1, &texture2);
-// 	glBindTexture(GL_TEXTURE_2D, texture2);
-// 
-// 	// set the texture wrapping/filtering options (on the currently bound texture object)
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-// 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-// 
-// 
-// 	unsigned char* data = stbi_load("resources/awesomeface.png", &width, &height, &nrChannels, 0);
-// 	if (data)
-// 	{
-// 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-// glGenerateMipmap(GL_TEXTURE_2D);
-// 	}
-// 	else
-// 	{
-// 		std::cout << "Failed to load texture" << std::endl;
-// 	}
-// 	stbi_image_free(data);
-
-	Texture texture1("resources/awesomeface.png", GL_TEXTURE_2D, 1, GL_RGBA);
+	Texture texture1("resources/awesomeface.png", GL_TEXTURE_2D, 1);
 
 	shaderProgram.setVertexAttribPointer("position", 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 
@@ -160,7 +113,6 @@ int main(int argc, char** argv)
 	//glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 
 	shaderProgram.setVertexAttribPointer("texCoord", 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-
 
 	glBindVertexArray(0);
 
@@ -199,15 +151,11 @@ int main(int argc, char** argv)
 		glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
 
-
 	SDL_Event event;
-
 
 	int start = SDL_GetTicks();
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrameTime = start; // Time of last frame
-
-
 
 	glEnable(GL_DEPTH_TEST);
 	bool isRunning = true;
@@ -240,13 +188,7 @@ int main(int argc, char** argv)
 
 		shaderProgram.use();
 
-// 		glActiveTexture(GL_TEXTURE0);
-// 		glBindTexture(GL_TEXTURE_2D, texture);
-
 		texture0.bind();
-
-// 		glActiveTexture(GL_TEXTURE1);
-// 		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		texture1.bind();
 

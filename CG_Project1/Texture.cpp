@@ -2,7 +2,7 @@
 #include <iostream>
 #include "stb_image.h"
 
-Texture::Texture(const char* fileName, GLenum texture_type, GLint texture_unit, GLenum format)
+Texture::Texture(const char* fileName, GLenum texture_type, GLint texture_unit)
 {
 	if (id)
 	{
@@ -23,6 +23,8 @@ Texture::Texture(const char* fileName, GLenum texture_type, GLint texture_unit, 
 
 	if (data)
 	{
+		GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
@@ -50,7 +52,7 @@ void Texture::unBind()
 	glBindTexture(type, 0);
 }
 
-void Texture::loadFromFile(const char* fileName, GLenum format)
+void Texture::loadFromFile(const char* fileName)
 {
 	if (id)
 	{
@@ -69,6 +71,8 @@ void Texture::loadFromFile(const char* fileName, GLenum format)
 
 	if (data)
 	{
+		GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}

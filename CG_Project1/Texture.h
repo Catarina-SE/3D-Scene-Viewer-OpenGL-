@@ -13,7 +13,7 @@ private:
 	GLint textureUnit;
 
 public:
-	Texture(const char* fileName, GLenum type, GLint textureUnit, GLenum format);
+	Texture(const char* fileName, GLenum type, GLint textureUnit);
 	~Texture();
 
 	inline GLuint getID() const { return id; };
@@ -24,6 +24,6 @@ public:
 	
 	inline GLint getTextureUnit() const { return textureUnit; }
 
-	void loadFromFile(const char* fileName, GLenum format);
+	void loadFromFile(const char* fileName);
 };
 
