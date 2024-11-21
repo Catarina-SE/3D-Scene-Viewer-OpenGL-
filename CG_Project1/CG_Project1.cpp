@@ -9,6 +9,7 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "Texture.h"
+#include "OBJLoader.h"
 
 int main(int argc, char** argv)
 {
@@ -34,6 +35,7 @@ int main(int argc, char** argv)
 		return -2;
 	}
 
+/*
 	float vertices[] = {
 	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -76,13 +78,21 @@ int main(int argc, char** argv)
 	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-	};
+	};*/
 
 
-	unsigned int indices[] = {  // note that we start from 0!
+	void InitObjModels();
+	{
+		std::vector<Vertex>temp;
+		temp = loadOBJ("1.obj");
+	}
+
+
+	/*unsigned int indices[] = {  // note that we start from 0!
 		0, 1, 3,   // first triangle
 		1, 2, 3    // second triangle
 	};
+*/
 
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
@@ -91,12 +101,12 @@ int main(int argc, char** argv)
 	GLuint vbo;
 	glGenBuffers(1, &vbo); // Generate 1 vertex buffer object
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	GLuint ebo;
 	glGenBuffers(1, &ebo); // Generate 1 element buffer object
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	Shader shaderProgram("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
 
