@@ -2,83 +2,90 @@
 #include <iostream>
 #include "stb_image.h"
 
-Texture::Texture(const char* fileName, GLenum texture_type, GLint texture_unit)
+Texture::Texture(const char* fileName, GLenum type)
+	: id(0), width(0), height(0), nrChannels(0), type(type), loaded(false), path(fileName)
 {
-	if (id)
-	{
-		glDeleteTextures(1, &id);
-	}
+	// Print loading attempt
+	std::cout << "Loading texture: " << fileName << std::endl;
 
-	type = texture_type;
-	textureUnit = texture_unit;
-	unsigned char* data = stbi_load(fileName, &width, &height, &nrChannels, 0);
-
+	// Generate texture ID first
 	glGenTextures(1, &id);
-	glBindTexture(type, id);
+	std::cout << "Generated new texture ID: " << id << std::endl;
 
-	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// Load image data
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* data = stbi_load(fileName, &width, &height, &nrChannels, 0);
 
 	if (data)
 	{
-		GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+		glBindTexture(type, id);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
+		// Set texture parameters
+		glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		// Determine format based on number of channels
+		GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+		GLenum internalFormat = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+
+		// Upload texture data
+		glTexImage2D(type, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(type);
+
+		// Success message
+		std::cout << "Texture loaded successfully: " << fileName << std::endl;
+		std::cout << "Dimensions: " << width << "x" << height << std::endl;
+		std::cout << "Channels: " << nrChannels << std::endl;
+		std::cout << "Texture ID: " << id << std::endl;
+
+		loaded = true;
+
+		glBindTexture(type, 0);
 	}
 	else
 	{
-		std::cout << "Failed to load texture" << std::endl;
+		std::cout << "Failed to load texture: " << fileName << std::endl;
+		std::cout << "STB Error: " << stbi_failure_reason() << std::endl;
+		glDeleteTextures(1, &id);
+		id = 0;
 	}
+
+	// Free image data
 	stbi_image_free(data);
 }
 
 Texture::~Texture()
 {
-	glDeleteTextures(1, &id);
+	cleanup();
 }
 
-void Texture::bind()
+void Texture::bind(GLint textureUnit) const
 {
-	glActiveTexture(GL_TEXTURE0 + textureUnit);
-	glBindTexture(type, id);
-}
-
-void Texture::unBind()
-{
-	glActiveTexture(0);
-	glBindTexture(type, 0);
-}
-
-void Texture::loadFromFile(const char* fileName)
-{
-	if (id)
+	if (loaded)
 	{
-		glDeleteTextures(1, &id);
-	}
-
-	unsigned char* data = stbi_load(fileName, &width, &height, &nrChannels, 0);
-
-	glGenTextures(1, &id);
-	glBindTexture(type, id);
-
-	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	if (data)
-	{
-		GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
+		glActiveTexture(GL_TEXTURE0 + textureUnit);
+		glBindTexture(type, id);
 	}
 	else
 	{
-		std::cout << "Failed to load texture from file" << std::endl;
+		std::cout << "Warning: Attempting to bind invalid texture (ID: " << id << ")" << std::endl;
 	}
-	stbi_image_free(data);
+}
+
+void Texture::unbind() const
+{
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(type, 0);
+}
+
+void Texture::cleanup()
+{
+	if (id != 0)
+	{
+		glDeleteTextures(1, &id);
+		id = 0;
+	}
+	loaded = false;
 }

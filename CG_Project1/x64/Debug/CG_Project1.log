@@ -1,20 +1,10 @@
-<<<<<<< Updated upstream
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (OpenGLDemo.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Texture.cpp
-  CG_Project1.vcxproj -> C:\Users\dark_\Documents\GitHub\OpenGLDemo\x64\Debug\CG_Project1.exe
-=======
-﻿C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (OpenGLDemo.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   CG_Project1.cpp
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\OBJLoader.h(58,9): warning C4101: 'temp_glint': unreferenced local variable
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(25,111): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(25,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(218,22): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(230,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(238,58): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(238,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(242,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(126,13): warning C4101: 'height': unreferenced local variable
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(126,21): warning C4101: 'nrChannels': unreferenced local variable
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(126,6): warning C4101: 'width': unreferenced local variable
-  CG_Project1.vcxproj -> C:\Users\jonca\Documents\GitKraken\CG_Project1\x64\Debug\CG_Project1.exe
->>>>>>> Stashed changes
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(25,111): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(25,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(58,22): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(64,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(71,49): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(71,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+H:\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(76,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+  CG_Project1.vcxproj -> H:\GitHub\CG_Project1\x64\Debug\CG_Project1.exe

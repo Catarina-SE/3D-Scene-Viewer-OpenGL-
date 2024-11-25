@@ -1,6 +1,8 @@
 #pragma once
+
 #include <glm/glm.hpp>
 #include <glad/glad.h>
+#include <string>
 
 class Texture
 {
@@ -9,21 +11,25 @@ private:
 	int width;
 	int height;
 	int nrChannels;
-	unsigned int type;
-	GLint textureUnit;
+	GLenum type;
+	bool loaded;
+	std::string path;
+
+	void cleanup();
 
 public:
-	Texture(const char* fileName, GLenum type, GLint textureUnit);
+	Texture(const char* fileName, GLenum type = GL_TEXTURE_2D);
 	~Texture();
 
-	inline GLuint getID() const { return id; };
+	void bind(GLint textureUnit = 0) const;
 
-	void bind();
+	void unbind() const;
 
-	void unBind();
-	
-	inline GLint getTextureUnit() const { return textureUnit; }
-
-	void loadFromFile(const char* fileName);
+	// Getters
+	GLuint getId() const { return id; }
+	int getWidth() const { return width; }
+	int getHeight() const { return height; }
+	GLenum getType() const { return type; }
+	bool isLoaded() const { return loaded; }
+	const std::string& getPath() const { return path; }
 };
-

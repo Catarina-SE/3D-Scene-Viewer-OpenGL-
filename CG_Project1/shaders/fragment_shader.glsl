@@ -1,16 +1,23 @@
 #version 330 core
+in vec2 TexCoords;
+out vec4 FragColor;
 
-in vec3 Color;
-in vec2 TexCoord;
+struct Material {
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    float shininess;
+};
 
-out vec4 outColor;
+uniform sampler2D texture_diffuse;
+uniform bool hasTexture;
+uniform Material material;
 
-uniform sampler2D ourTexture;
-uniform sampler2D ourTexture2;
-
-void main()
-{
-	vec4 colTex1 = texture(ourTexture, TexCoord);
-	vec4 colTex2 = texture(ourTexture2, TexCoord);
-	outColor = mix(colTex1, colTex2, 0.5);
+void main() {
+    if(hasTexture) {
+        vec4 texColor = texture(texture_diffuse, TexCoords);
+        FragColor = texColor;
+    } else {
+        FragColor = vec4(material.diffuse, 1.0);
+    }
 }

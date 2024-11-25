@@ -26,18 +26,8 @@ void Camera::processKeyboardInput(const Uint8* keyState, float deltaTime) {
 	if (keyState[SDL_SCANCODE_E]) move(UP, velocity);
 }
 
-void Camera::processMouseInput(float xpos, float ypos) {
-	if (firstMouse) {
-		lastX = xpos;
-		lastY = ypos;
-		firstMouse = false;
-	}
-
-	float xoffset = xpos - lastX;
-	float yoffset = lastY - ypos; // Reversed since y-coordinates go from bottom to top
-	lastX = xpos;
-	lastY = ypos;
-
+void Camera::processMouseInput(float xoffset, float yoffset)
+{
 	xoffset *= mouseSensitivity;
 	yoffset *= mouseSensitivity;
 

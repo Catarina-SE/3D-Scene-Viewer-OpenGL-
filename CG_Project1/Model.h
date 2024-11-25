@@ -1,18 +1,27 @@
 #pragma once
-#include <iostream>
-#include "glm/glm.hpp"
 
-class Mesh
+#include <vector>
+#include <string>
+#include <map>
+#include <glm/glm.hpp>
+#include "Shader.h"
+#include "Texture.h"
+#include "Material.h"
+#include "Mesh.h"
+
+class Model
 {
+private:
+	std::vector<Mesh*> meshes;
+	std::map<std::string, Material*> materials;
+	std::string directory;
+
+	void loadOBJ(const char* objPath);
+	void loadMaterials(const char* objPath);
+
 public:
-	glm::vec3 Position;
-	glm::vec3 Vertices;
-	glm::vec3 Normals;
-	glm::vec3 textCoords;
+	Model(const char* objPath);
+	~Model();
 
-	Mesh();
-	~Mesh();
-
-
+	void draw(Shader& shader);
 };
-
