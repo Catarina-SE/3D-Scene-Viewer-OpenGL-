@@ -32,7 +32,7 @@ void Material::setDiffuseMap(const std::string& path)
 
 void Material::apply(Shader& shader) const
 {
-	std::cout << "Applying material: " << name << std::endl;
+	//std::cout << "Applying material: " << name << std::endl;
 
 	// Set material properties
 	shader.set3Float("material.ambient", ambient.x, ambient.y, ambient.z);
@@ -43,15 +43,16 @@ void Material::apply(Shader& shader) const
 	// Handle texture
 	if (hasTexture())
 	{
-		diffuseTexture->bind(0);  // Bind to texture unit 0
+
+		diffuseTexture->bind(0);
 		shader.setInt("texture_diffuse", 0);
 		shader.setBool("hasTexture", true);
-		std::cout << "Applied texture ID " << textureId << " for material " << name << std::endl;
+		//std::cout << "Applied texture ID " << textureId << " for material " << name << std::endl;
 	}
 	else
 	{
 		shader.setBool("hasTexture", false);
-		std::cout << "No texture applied for material " << name << std::endl;
+		//std::cout << "No texture applied for material " << name << std::endl;
 	}
 }
 

@@ -44,10 +44,10 @@ int main(int argc, char** argv)
 
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 
-	//Model* myCube = new Model("resources/cube.obj");
+	//Model* Building = new Model("resources/Building/building.obj");
 	//Model* Wall = new Model("resources/wall/wall.obj");
-	Model* Cottage = new Model("resources/cottage/cottage_obj.obj");
-	//Model* myModel1 = new Model("resources/1.obj");
+	Model* WoodenPier = new Model("resources/WoodenPier/woodenpier.obj");
+	//Model* Tree = new Model("resources/Tree/Tree.obj");
 	//Model* myModel2 = new Model("resources/2.obj");
 
 	glEnable(GL_DEPTH_TEST);
@@ -102,18 +102,18 @@ int main(int argc, char** argv)
 		shaderProgram.setMat4("view", view);
 		shaderProgram.setMat4("projection", projection);
 
-		//myCube->Draw(shaderProgram);
+		//Building->draw(shaderProgram);
 		//Wall->draw(shaderProgram);
-		Cottage->draw(shaderProgram);
-		//myModel1->Draw(shaderProgram);
-		//myModel2->Draw(shaderProgram);
+		WoodenPier->draw(shaderProgram);
+		//Tree->draw(shaderProgram);
+		//myModel2->draw(shaderProgram);
 		SDL_GL_SwapWindow(window);
 	}
 
-	//delete myCube;
+	//delete Building;
 	//delete Wall;
-	delete Cottage;
-	//delete myModel1;
+	delete WoodenPier;
+	//delete Tree;
 	//delete myModel2;
 
 	SDL_GL_DeleteContext(context);

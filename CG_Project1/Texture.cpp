@@ -65,8 +65,13 @@ void Texture::bind(GLint textureUnit) const
 {
 	if (loaded)
 	{
+		//std::cout << "Binding texture (ID: " << id << ") to unit " << textureUnit << std::endl;
 		glActiveTexture(GL_TEXTURE0 + textureUnit);
 		glBindTexture(type, id);
+
+		GLint boundTexture;
+		glGetIntegerv(GL_TEXTURE_BINDING_2D, &boundTexture);
+		//std::cout << "Verified bound texture: " << boundTexture << " on unit " << textureUnit << std::endl;
 	}
 	else
 	{

@@ -100,7 +100,7 @@ void Model::loadOBJ(const char* objPath)
 		{
 			glm::vec2 texcoord;
 			iss >> texcoord.x >> texcoord.y;
-			texcoord.y = 1.0f - texcoord.y;
+			// texcoord.y = 1.0f - texcoord.y; // Already flipped by stbi_set_flip_vertically_on_load(true) in Texture.cpp
 			temp_texcoords.push_back(texcoord);
 		}
 		else if (prefix == "vn")
