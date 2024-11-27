@@ -16,5 +16,5 @@ private:
 public:
 	Model(const char* objPath);
 	~Model();
-	void draw(Shader& shader);
+	void draw(Shader& shader, const glm::mat4& modelMatrix);
 };

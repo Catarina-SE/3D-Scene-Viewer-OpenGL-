@@ -12,8 +12,12 @@ Model::~Model() {
 	for (auto& pair : materials) delete pair.second;
 }
 
-void Model::draw(Shader& shader) {
-	for (Mesh* mesh : meshes) mesh->draw(shader);
+void Model::draw(Shader& shader, const glm::mat4& modelMatrix)
+{
+	shader.setMat4("model", modelMatrix);
+	for (Mesh* mesh : meshes) {
+		mesh->draw(shader);
+	}
 }
 
 void Model::loadOBJ(const char* objPath) {

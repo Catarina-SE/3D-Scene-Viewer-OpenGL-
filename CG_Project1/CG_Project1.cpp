@@ -50,6 +50,15 @@ int main(int argc, char** argv)
 	//Model* Tree = new Model("resources/Tree/Tree.obj");
 	//Model* myModel2 = new Model("resources/2.obj");
 
+	std::vector<glm::vec3> wallPositions = {
+	glm::vec3(-5.0f, 0.0f, 0.0f),
+	glm::vec3(-5.0f, 0.0f, -10.0f),
+	glm::vec3(-5.0f, 0.0f, -20.0f),
+	glm::vec3(5.0f, 0.0f, 0.0f),
+	glm::vec3(5.0f, 0.0f, -10.0f),
+	glm::vec3(5.0f, 0.0f, -20.0f)
+	};
+
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
@@ -94,7 +103,7 @@ int main(int argc, char** argv)
 		shaderProgram.use();
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(.0f, 0.0f, -15.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -15.0f));
 		view = camera.getViewMatrix();
 		projection = glm::perspective(glm::radians(camera.getFov()), screenWidth / screenHeight, 0.1f, 100.0f);
 
@@ -102,8 +111,15 @@ int main(int argc, char** argv)
 		shaderProgram.setMat4("view", view);
 		shaderProgram.setMat4("projection", projection);
 
+		for (const auto& position : wallPositions) {
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, position);
+			model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			Wall->draw(shaderProgram, model);
+		}
+
+
 		//Building->draw(shaderProgram);
-		Wall->draw(shaderProgram);
 		//WoodenPier->draw(shaderProgram);
 		//Tree->draw(shaderProgram);
 		//myModel2->draw(shaderProgram);
