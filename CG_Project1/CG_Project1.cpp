@@ -45,8 +45,8 @@ int main(int argc, char** argv)
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 
 	//Model* Building = new Model("resources/Building/building.obj");
-	//Model* Wall = new Model("resources/wall/wall.obj");
-	Model* WoodenPier = new Model("resources/WoodenPier/woodenpier.obj");
+	Model* Wall = new Model("resources/wall/wall.obj");
+	//Model* WoodenPier = new Model("resources/WoodenPier/woodenpier.obj");
 	//Model* Tree = new Model("resources/Tree/Tree.obj");
 	//Model* myModel2 = new Model("resources/2.obj");
 
@@ -103,16 +103,16 @@ int main(int argc, char** argv)
 		shaderProgram.setMat4("projection", projection);
 
 		//Building->draw(shaderProgram);
-		//Wall->draw(shaderProgram);
-		WoodenPier->draw(shaderProgram);
+		Wall->draw(shaderProgram);
+		//WoodenPier->draw(shaderProgram);
 		//Tree->draw(shaderProgram);
 		//myModel2->draw(shaderProgram);
 		SDL_GL_SwapWindow(window);
 	}
 
 	//delete Building;
-	//delete Wall;
-	delete WoodenPier;
+	delete Wall;
+	//delete WoodenPier;
 	//delete Tree;
 	//delete myModel2;
 
