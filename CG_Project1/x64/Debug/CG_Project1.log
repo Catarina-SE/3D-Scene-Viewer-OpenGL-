@@ -2,9 +2,11 @@
   CG_Project1.cpp
 C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(25,111): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(25,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(67,22): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(73,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(80,49): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(80,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(85,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(154,22): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(160,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(167,49): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(167,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp(172,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+  camera.cpp
+  Generating Code...
   CG_Project1.vcxproj -> C:\Users\jonca\Documents\GitKraken\CG_Project1\x64\Debug\CG_Project1.exe

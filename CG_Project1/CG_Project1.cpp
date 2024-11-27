@@ -44,20 +44,107 @@ int main(int argc, char** argv)
 
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 
-	//Model* Building = new Model("resources/Building/building.obj");
+	
 	Model* Wall = new Model("resources/wall/wall.obj");
-	//Model* WoodenPier = new Model("resources/WoodenPier/woodenpier.obj");
-	//Model* Tree = new Model("resources/Tree/Tree.obj");
-	//Model* myModel2 = new Model("resources/2.obj");
+	Model* Tree = new Model("resources/Tree/Tree.obj");
+	Model* Weapon = new Model("resources/Weapon/AK-74(HP).obj");
+	Model* Cabin = new Model("resources/Cabin/cabin.obj");
+	Material* cabinFloorMaterial = Cabin->getMaterial("02___Default");
+	if (cabinFloorMaterial)
+	{
+		cabinFloorMaterial->setDiffuseMap("resources/Cabin/floortexture.jpg");
+	}
 
-	std::vector<glm::vec3> wallPositions = {
+	Model* Floor = new Model("resources/Floor/floor.obj");
+	Material* floorMaterial = Floor->getMaterial("FloorMaterial");
+	if (floorMaterial)
+	{
+		floorMaterial->setDiffuseMap("resources/Floor/floortexture.jpg");
+	}
+	
+	
+	// Floor
+	std::vector<glm::vec3> FloorPositions = {
+	glm::vec3(-1.0f, 0.0f, 0.0f),
+	glm::vec3(-1.0f, -4.0f, 0.0f),
+	glm::vec3(-1.0f, -8.0f, 0.0f),
+	glm::vec3(-1.0f, -12.0f, 0.0f),
+	glm::vec3(-1.0f, -16.0f, 0.0f),
+	glm::vec3(-1.0f, -20.0f, 0.0f),
+
+	glm::vec3(-5.0f, -12.0f, 0.0f),
+	glm::vec3(-5.0f, -16.0f, 0.0f),
+	glm::vec3(-5.0f, -20.0f, 0.0f),
+
+	glm::vec3(-9.0f, -12.0f, 0.0f),
+	glm::vec3(-9.0f, -16.0f, 0.0f),
+	glm::vec3(-9.0f, -20.0f, 0.0f),
+
+	glm::vec3(-13.0f, -12.0f, 0.0f),
+	glm::vec3(-13.0f, -16.0f, 0.0f),
+	glm::vec3(-13.0f, -20.0f, 0.0f),
+
+	
+	glm::vec3(3.0f, -12.0f, 0.0f),
+	glm::vec3(3.0f, -16.0f, 0.0f),
+	glm::vec3(3.0f, -20.0f, 0.0f),
+
+	glm::vec3(7.0f, -12.0f, 0.0f),
+	glm::vec3(7.0f, -16.0f, 0.0f),
+	glm::vec3(7.0f, -20.0f, 0.0f),
+
+	glm::vec3(11.0f, -12.0f, 0.0f),
+	glm::vec3(11.0f, -16.0f, 0.0f),
+	glm::vec3(11.0f, -20.0f, 0.0f),
+	};
+
+	// Vertical Walls
+	std::vector<glm::vec3> VerticalWallPositions = {
 	glm::vec3(-5.0f, 0.0f, 0.0f),
 	glm::vec3(-5.0f, 0.0f, -10.0f),
 	glm::vec3(-5.0f, 0.0f, -20.0f),
 	glm::vec3(5.0f, 0.0f, 0.0f),
 	glm::vec3(5.0f, 0.0f, -10.0f),
-	glm::vec3(5.0f, 0.0f, -20.0f)
+	glm::vec3(5.0f, 0.0f, -20.0f),
+
+	glm::vec3(35.0f, 0.0f, -30.0f),
+	glm::vec3(35.0f, 0.0f, -40.0f),
+	glm::vec3(35.0f, 0.0f, -50.0f),
+
+
+	glm::vec3(-35.0f, 0.0f, -30.0f),
+	glm::vec3(-35.0f, 0.0f, -40.0f),
+	glm::vec3(-35.0f, 0.0f, -50.0f),
+
 	};
+
+	// Horizontal Walls
+	std::vector<glm::vec3> HorizontalWallPositions = {
+	glm::vec3(10.0f, 0.0f, -25.0f),
+	glm::vec3(20.0f, 0.0f, -25.0f),
+	glm::vec3(30.0f, 0.0f, -25.0f),
+
+	glm::vec3(-10.0f, 0.0f, -25.0f),
+	glm::vec3(-20.0f, 0.0f, -25.0f),
+	glm::vec3(-30.0f, 0.0f, -25.0f),
+
+	glm::vec3(-30.0f, 0.0f, -55.0f),
+	glm::vec3(-20.0f, 0.0f, -55.0f),
+	glm::vec3(-10.0f, 0.0f, -55.0f),
+	glm::vec3(0.0f, 0.0f, -55.0f),
+	glm::vec3(10.0f, 0.0f, -55.0f),
+	glm::vec3(20.0f, 0.0f, -55.0f),
+	glm::vec3(30.0f, 0.0f, -55.0f),
+	
+	};
+
+	// Trees Position
+	std::vector<glm::vec3> TreesPositions = {
+	glm::vec3(10.0f, 0.0f, -20.0f),
+	glm::vec3(-10.0f, 0.0f, -20.0f),
+	};
+
+
 
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -111,26 +198,59 @@ int main(int argc, char** argv)
 		shaderProgram.setMat4("view", view);
 		shaderProgram.setMat4("projection", projection);
 
-		for (const auto& position : wallPositions) {
+		for (const auto& position : VerticalWallPositions) {
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, position);
 			model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 			Wall->draw(shaderProgram, model);
 		}
 
+		for (const auto& position : HorizontalWallPositions) {
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, position);
+			Wall->draw(shaderProgram, model);
+		}
 
-		//Building->draw(shaderProgram);
-		//WoodenPier->draw(shaderProgram);
-		//Tree->draw(shaderProgram);
-		//myModel2->draw(shaderProgram);
+		for (const auto& position : TreesPositions) {
+			model = glm::mat4(1.0f);
+			model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f)); 
+			model = glm::translate(model, position);
+			Tree->draw(shaderProgram, model);
+		}
+
+		for (const auto& position : FloorPositions) {
+			model = glm::mat4(1.0f);
+			model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
+			model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+			model = glm::translate(model, position);
+			Floor->draw(shaderProgram, model);
+		}
+
+		glm::mat4 modelMatrix = camera.getViewMatrix(); 
+		modelMatrix = glm::inverse(modelMatrix);
+
+		glm::vec3 offset(0.8f, -1.8f, -3.0f);
+		modelMatrix = glm::translate(modelMatrix, offset);
+		modelMatrix = glm::rotate(modelMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		
+		Weapon->draw(shaderProgram, modelMatrix);
+
+		Floor->draw(shaderProgram, model);
+
+		glm::mat4 cabinModel(1.0f);
+		cabinModel = glm::scale(cabinModel, glm::vec3(2.5f, 2.5f, 2.5f));
+		cabinModel = glm::translate(cabinModel,glm::vec3( 0.0f, -1.0f, -17.0f));
+		cabinModel = glm::rotate(cabinModel, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		Cabin->draw(shaderProgram, cabinModel);
+
+
 		SDL_GL_SwapWindow(window);
 	}
 
-	//delete Building;
+	
 	delete Wall;
-	//delete WoodenPier;
-	//delete Tree;
-	//delete myModel2;
+	delete Tree;
+	delete Weapon;
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);

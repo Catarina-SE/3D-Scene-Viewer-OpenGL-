@@ -132,3 +132,9 @@ void Model::loadMaterials(const char* mtlPath) {
 		}
 	}
 }
+
+Material* Model::getMaterial(const std::string& materialName)
+{
+	auto it = materials.find(materialName);
+	return it != materials.end() ? it->second : nullptr;
+}

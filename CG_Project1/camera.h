@@ -7,27 +7,13 @@ enum CameraMovement {
 	FORWARD,
 	BACKWARD,
 	LEFT,
-	RIGHT,
-	UP,
-	DOWN
+	RIGHT//,
+	// UP,
+	// DOWN
 };
 
 class Camera
 {
-public:
-	Camera(glm::vec3 cameraPosition, glm::vec3 up, float yaw, float pitch);
-
-	glm::mat4 getViewMatrix() const;
-
-	void processKeyboardInput(const Uint8* keyState, float deltaTime);
-	void processMouseInput(float xpos, float ypos);
-	void processMouseScroll(float yoffset);
-	float getFov() const { return fov; }
-
-private:
-	void updateCameraVectors();
-	void move(CameraMovement direction, float velocity);
-
 private:
 	glm::vec3 position;
 	glm::vec3 front;
@@ -41,6 +27,27 @@ private:
 	float mouseSensitivity;
 	float fov;
 
+	float normalHeight;
+	float maxJumpHeight;
+	float jumpSpeed;
+	float fallSpeed;
+	bool isJumping;
+	bool isFalling;
+
 	float lastX, lastY;
 	bool firstMouse;
+
+	void updateCameraVectors();
+	void move(CameraMovement direction, float velocity);
+	void processJump(float deltaTime);
+
+public:
+	Camera(glm::vec3 cameraPosition, glm::vec3 up, float yaw, float pitch);
+
+	glm::mat4 getViewMatrix() const;
+
+	void processKeyboardInput(const Uint8* keyState, float deltaTime);
+	void processMouseInput(float xpos, float ypos);
+	void processMouseScroll(float yoffset);
+	float getFov() const { return fov; }
 };
