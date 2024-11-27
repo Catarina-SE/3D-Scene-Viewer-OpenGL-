@@ -5,8 +5,7 @@
 #include "Material.h"
 #include "Shader.h"
 
-class Mesh
-{
+class Mesh {
 private:
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
@@ -20,10 +19,5 @@ public:
 	~Mesh();
 
 	void draw(Shader& shader);
-
-	void addVertex(const Vertex& vertex);
-
-	void addIndex(unsigned int index);
-
 	void setMaterial(Material* material);
 };
