@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 H:\GitHub\CG_Project1\CG_Project1\camera.cpp;H:\GitHub\CG_Project1\CG_Project1\x64\Debug\camera.obj
 H:\GitHub\CG_Project1\CG_Project1\glad.c;H:\GitHub\CG_Project1\CG_Project1\x64\Debug\glad.obj
 H:\GitHub\CG_Project1\CG_Project1\Material.cpp;H:\GitHub\CG_Project1\CG_Project1\x64\Debug\Material.obj
@@ -7,3 +8,15 @@ H:\GitHub\CG_Project1\CG_Project1\Model.cpp;H:\GitHub\CG_Project1\CG_Project1\x6
 H:\GitHub\CG_Project1\CG_Project1\Shader.cpp;H:\GitHub\CG_Project1\CG_Project1\x64\Debug\Shader.obj
 H:\GitHub\CG_Project1\CG_Project1\stb_image.cpp;H:\GitHub\CG_Project1\CG_Project1\x64\Debug\stb_image.obj
 H:\GitHub\CG_Project1\CG_Project1\Texture.cpp;H:\GitHub\CG_Project1\CG_Project1\x64\Debug\Texture.obj
+=======
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\camera.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\camera.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\glad.c;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\glad.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\Material.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\Material.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\Mesh.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\Mesh.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\CG_Project1.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\CG_Project1.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\Model.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\Model.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\OBJLoader.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\OBJLoader.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\Shader.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\Shader.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\stb_image.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\stb_image.obj
+C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\Texture.cpp;C:\Users\jonca\Documents\GitKraken\CG_Project1\CG_Project1\x64\Debug\Texture.obj
+>>>>>>> Stashed changes
