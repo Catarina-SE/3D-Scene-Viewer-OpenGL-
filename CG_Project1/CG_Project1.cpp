@@ -44,10 +44,16 @@ int main(int argc, char** argv)
 
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 
-	
+	Model* WoodenPier = new Model("resources/WoodenPier/woodenpier.obj");
+	glm::mat4 pierModel;
+
 	Model* Wall = new Model("resources/wall/wall.obj");
 	Model* Tree = new Model("resources/Tree/Tree.obj");
+
 	Model* Weapon = new Model("resources/Weapon/AK-74(HP).obj");
+	glm::mat4 weaponModelMatrix;
+	glm::vec3 weaponOffset(0.8f, -1.8f, -3.0f);
+
 	Model* Cabin = new Model("resources/Cabin/cabin.obj");
 	Material* cabinFloorMaterial = Cabin->getMaterial("02___Default");
 	if (cabinFloorMaterial)
@@ -144,8 +150,6 @@ int main(int argc, char** argv)
 	glm::vec3(-10.0f, 0.0f, -20.0f),
 	};
 
-
-
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
@@ -226,14 +230,19 @@ int main(int argc, char** argv)
 			Floor->draw(shaderProgram, model);
 		}
 
-		glm::mat4 modelMatrix = camera.getViewMatrix(); 
-		modelMatrix = glm::inverse(modelMatrix);
+		weaponModelMatrix = camera.getViewMatrix();
+		weaponModelMatrix = glm::inverse(weaponModelMatrix);
 
-		glm::vec3 offset(0.8f, -1.8f, -3.0f);
-		modelMatrix = glm::translate(modelMatrix, offset);
-		modelMatrix = glm::rotate(modelMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		weaponModelMatrix = glm::translate(weaponModelMatrix, weaponOffset);
+		weaponModelMatrix = glm::rotate(weaponModelMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+		pierModel = glm::mat4(1.0f);
+		pierModel = glm::translate(pierModel, glm::vec3(0.0f, -4.3f, 15.0f));
+		pierModel = glm::rotate(pierModel, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		pierModel = glm::scale(pierModel, glm::vec3(1.8f, 1.8f, 1.8f));
+		WoodenPier->draw(shaderProgram, pierModel);
 		
-		Weapon->draw(shaderProgram, modelMatrix);
+		Weapon->draw(shaderProgram, weaponModelMatrix);
 
 		Floor->draw(shaderProgram, model);
 
@@ -243,7 +252,6 @@ int main(int argc, char** argv)
 		cabinModel = glm::rotate(cabinModel, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 		Cabin->draw(shaderProgram, cabinModel);
 
-
 		SDL_GL_SwapWindow(window);
 	}
 
@@ -251,6 +259,7 @@ int main(int argc, char** argv)
 	delete Wall;
 	delete Tree;
 	delete Weapon;
+	delete WoodenPier;
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
