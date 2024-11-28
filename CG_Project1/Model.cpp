@@ -128,6 +128,7 @@ void Model::loadMaterials(const char* mtlPath) {
 		else if (currentMaterial && prefix == "map_Kd") {
 			std::string texturePath;
 			iss >> texturePath;
+			std::cout << "Setting Texture for Materal:  " << currentMaterial->getName() << std::endl;
 			currentMaterial->setDiffuseMap(directory + "/" + texturePath);
 		}
 	}

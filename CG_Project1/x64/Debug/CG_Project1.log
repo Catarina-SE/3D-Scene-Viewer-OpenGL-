@@ -7,4 +7,24 @@ C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(164,19):
 C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(171,49): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
 C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(171,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
 C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(176,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+  Material.cpp
+  Mesh.cpp
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Mesh.cpp(50,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Model.cpp
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         with
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         [
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:             _Ty=unsigned int
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         ]
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         with
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         [
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:             _Ty=unsigned int
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         ]
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         with
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         [
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:             _Ty=unsigned int
+C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         ]
+  Generating Code...
   CG_Project1.vcxproj -> C:\Users\dark_\Documents\GitHub\CG_Project1\x64\Debug\CG_Project1.exe

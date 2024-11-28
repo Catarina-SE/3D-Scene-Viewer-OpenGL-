@@ -16,4 +16,5 @@ public:
 	void setDiffuseMap(const std::string& path);
 	void apply(Shader& shader) const;
 	bool hasTexture() const { return textureId != 0; }
+	std::string& getName() { return name; }
 };
