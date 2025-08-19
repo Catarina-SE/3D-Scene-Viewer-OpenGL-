@@ -1,30 +1,36 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (OpenGLDemo.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  CG_Project1.cpp
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(25,111): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(25,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(158,22): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(164,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(171,49): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(171,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(176,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: O diretório intermediário (x64\Debug\) contém arquivos compartilhados de outro projeto (OpenGLDemo.vcxproj). Isso pode levar a um comportamento incorreto de limpeza e recompilação.
+  camera.cpp
   Material.cpp
   Mesh.cpp
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Mesh.cpp(50,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Mesh.cpp(50,43): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
+  CG_Project1.cpp
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(25,111): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(25,98): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(158,22): warning C4244: 'inicializando': conversão de 'Uint32' para 'float', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(164,19): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(171,49): warning C4244: 'argumento': conversão de 'Sint32' para 'float', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(171,42): warning C4244: 'argumento': conversão de 'Sint32' para 'float', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\CG_Project1.cpp(176,42): warning C4244: 'argumento': conversão de 'Sint32' para 'float', possível perda de dados
   Model.cpp
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         with
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         [
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:             _Ty=unsigned int
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         ]
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         with
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         [
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:             _Ty=unsigned int
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         ]
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         with
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         [
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:             _Ty=unsigned int
-C:\Users\dark_\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         ]
-  Generating Code...
-  CG_Project1.vcxproj -> C:\Users\dark_\Documents\GitHub\CG_Project1\x64\Debug\CG_Project1.exe
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267: 'argumento': conversão de 'size_t' para '_Ty', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         with
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         [
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:             _Ty=unsigned int
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(98,53): warning C4267:         ]
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267: 'argumento': conversão de 'size_t' para '_Ty', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         with
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         [
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:             _Ty=unsigned int
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(99,53): warning C4267:         ]
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267: 'argumento': conversão de 'size_t' para '_Ty', possível perda de dados
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         with
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         [
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:             _Ty=unsigned int
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Model.cpp(100,53): warning C4267:         ]
+  Shader.cpp
+C:\Users\escre\Documents\GitHub\CG_Project1\CG_Project1\Shader.cpp(36,33): warning C4101: 'e': variável local não referenciada
+  stb_image.cpp
+  Texture.cpp
+  Gerando Código...
+  glad.c
+  CG_Project1.vcxproj -> C:\Users\escre\Documents\GitHub\CG_Project1\x64\Debug\CG_Project1.exe
